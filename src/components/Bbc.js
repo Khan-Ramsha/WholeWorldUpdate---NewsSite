@@ -13,7 +13,7 @@ export default class Bbc extends Component {
         };
     }
     async componentDidMount() {
-        let url ="https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=2bb09eb25bd74ce5a2023ecb3ba8d36a";
+        let url = "https://newsapi.org/v2/top-headlines?sources=bbc-news&apiKey=2bb09eb25bd74ce5a2023ecb3ba8d36a";
         let data = await fetch(url);
         let parsedData = await data.json()
         this.setState({ articles: parsedData.articles, totalResults: parsedData.totalResults, loading: false })
@@ -67,11 +67,16 @@ export default class Bbc extends Component {
                                     description={element.description}
                                     imageUrl={element.urlToImage}
                                     newsUrl={element.url}
+                                    author={element.author}
+                                    date={element.publishedAt}
+                                    source={element.source.name}
+
+
                                 />
                             </div>
                         ))}
                     </div>
-                </div>  
+                </div>
                 <div className="container d-flex justify-content-between">
                     <button disabled={this.state.page <= 1 ? true : false} type="button" className="btn btn-dark" onClick={this.handlePrevious}> &larr; Previous</button>
                     <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)} type="button" className="btn btn-dark" onClick={this.handleNext}>Next  &rarr;</button>

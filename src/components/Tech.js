@@ -61,13 +61,16 @@ export default class Tech extends Component {
                     {this.state.loading && <Spinner />}
 
                     <div className="row mx-6">
-                        {!this.state.loading &&this.state.articles.map((element, index) => (
+                        {!this.state.loading && this.state.articles.map((element, index) => (
                             <div key={index} className="col-md-4 mb-4">
                                 <TechItems
                                     title={element.title}
                                     description={element.description}
                                     imageUrl={element.urlToImage}
                                     newsUrl={element.url}
+                                    author={element.author}
+                                    date={element.publishedAt}
+                                    source={element.source.name}
                                 />
                             </div>
                         ))}

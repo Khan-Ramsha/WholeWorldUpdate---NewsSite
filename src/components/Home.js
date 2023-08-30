@@ -69,29 +69,32 @@ export default class Home extends Component {
     render() {
         return (
             <>
-            <div className="container">
-                <div className="col" style={{ height: '10%' }}>
-                    <div className="my-2">A news website</div>
-                    <h2 className=" d-flex justify-content-center my-5">News Monkey - Top Headlines</h2>
-                    {this.state.loading && <Spinner />}
-                    <div className="row mx-6">
-                        {!this.state.loading && this.state.articles.map((element, index) => (
-                            <div key={index} className="col-md-4 mb-4">
-                                <Homeitem
-                                    title={element.title}
-                                    description={element.description}
-                                    imageUrl={element.urlToImage}
-                                    newsUrl={element.url}
-                                />
-                            </div>
-                        ))}
+                <div className="container">
+                    <div className="col" style={{ height: '10%' }}>
+                        <div className="my-2">A news website</div>
+                        <h2 className=" d-flex justify-content-center my-5">News Monkey - Top Headlines</h2>
+                        {this.state.loading && <Spinner />}
+                        <div className="row mx-6">
+                            {!this.state.loading && this.state.articles.map((element, index) => (
+                                <div key={index} className="col-md-4 mb-4">
+                                    <Homeitem
+                                        title={element.title}
+                                        description={element.description}
+                                        imageUrl={element.urlToImage}
+                                        newsUrl={element.url}
+                                        author={element.author}
+                                        date={element.publishedAt}
+                                        source={element.source.name}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                    <div className="container d-flex justify-content-between">
+                        <button disabled={this.state.page <= 1 ? true : false} type="button" className="btn btn-dark" onClick={this.handlePrevious}> &larr; Previous</button>
+                        <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)} type="button" className="btn btn-dark" onClick={this.handleNext}>Next  &rarr;</button>
                     </div>
                 </div>
-                <div className="container d-flex justify-content-between">
-                    <button disabled={this.state.page <= 1 ? true : false} type="button" className="btn btn-dark" onClick={this.handlePrevious}> &larr; Previous</button>
-                    <button disabled={this.state.page + 1 > Math.ceil(this.state.totalResults / this.props.pageSize)} type="button" className="btn btn-dark" onClick={this.handleNext}>Next  &rarr;</button>
-                </div>
-            </div>
 
 
             </>

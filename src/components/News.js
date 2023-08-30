@@ -15,9 +15,11 @@ export default class News extends Component {
         let url = 'https://newsapi.org/v2/everything?q=bitcoin&pageSize=6&apiKey=2bb09eb25bd74ce5a2023ecb3ba8d36a';
         let data = await fetch(url);
         let parsedData = await data.json()
-        this.setState({ articles: parsedData.articles,
-             totalResults: parsedData.totalResults, 
-             loading: false })
+        this.setState({
+            articles: parsedData.articles,
+            totalResults: parsedData.totalResults,
+            loading: false
+        })
 
     }
     handleNext = async () => {
@@ -71,6 +73,9 @@ export default class News extends Component {
                                     description={element.description}
                                     imageUrl={element.urlToImage}
                                     newsUrl={element.url}
+                                    author={element.author}
+                                    date={element.publishedAt}
+                                    source={element.source.name}
                                 />
                             </div>
                         ))}
