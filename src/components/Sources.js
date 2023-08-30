@@ -12,11 +12,13 @@ export default class Sources extends Component {
         };
     }
     async componentDidMount() {
-        let url ="https://newsapi.org/v2/top-headlines/sources?&apiKey=2bb09eb25bd74ce5a2023ecb3ba8d36a";
+        let url = "https://newsapi.org/v2/top-headlines/sources?&apiKey=2bb09eb25bd74ce5a2023ecb3ba8d36a";
         let data = await fetch(url);
         let parsedData = await data.json()
-        this.setState({ articles: parsedData.sources ,
-             totalResults: parsedData.totalResults, loading: false })
+        this.setState({
+            articles: parsedData.sources,
+            totalResults: parsedData.totalResults, loading: false
+        })
 
     }
 
@@ -36,12 +38,15 @@ export default class Sources extends Component {
                                     description={element.description}
                                     imageUrl={element.urlToImage}
                                     newsUrl={element.url}
+                                    author={element.author}
+                                    date={element.publishedAt}
+
                                 />
                             </div>
                         ))}
                     </div>
                 </div>
-          
+
             </div>
         );
     }
